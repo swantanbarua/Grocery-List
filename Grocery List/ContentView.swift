@@ -66,6 +66,13 @@ struct ContentView: View {
         )
     ]
     
+    let container = try! ModelContainer(
+        for: Item.self,
+        configurations: ModelConfiguration(
+            isStoredInMemoryOnly: true
+        )
+    )
+    
     ContentView()
         .modelContainer(
             for: Item.self,
