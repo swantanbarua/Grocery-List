@@ -23,6 +23,15 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("Grocery List")
+            .overlay {
+                if items.isEmpty {
+                    ContentUnavailableView(
+                        "Empty Cart",
+                        systemImage: "cart.circle",
+                        description: Text("Add some items to the shopping list")
+                    )
+                }
+            }
         }
     }
 }
