@@ -36,7 +36,16 @@ struct ContentView: View {
     }
 }
 
-#Preview {
+// MARK: - PREVIEW
+#Preview("Sample Data") {
+    ContentView()
+        .modelContainer(
+            for: Item.self,
+            inMemory: true
+        )
+}
+
+#Preview("Empty View") {
     ContentView()
         .modelContainer(
             for: Item.self,
