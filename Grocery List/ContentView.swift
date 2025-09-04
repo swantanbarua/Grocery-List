@@ -22,6 +22,7 @@ struct ContentView: View {
                     Text(item.title)
                 }
             }
+            .navigationTitle("Grocery List")
         }
     }
 }
