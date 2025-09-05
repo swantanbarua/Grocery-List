@@ -69,28 +69,28 @@ struct ContentView: View {
     container.mainContext.insert(
         Item(
             title: "Meat & Seafood",
-            isCompleted: false
+            isCompleted: true
         )
     )
     
     container.mainContext.insert(
         Item(
             title: "Cereals",
-            isCompleted: true
+            isCompleted: .random()
         )
     )
     
     container.mainContext.insert(
         Item(
             title: "Pasta & Rice",
-            isCompleted: true
+            isCompleted: .random()
         )
     )
     
     container.mainContext.insert(
         Item(
             title: "Cheese & Eggs",
-            isCompleted: false
+            isCompleted: .random()
         )
     )
     
