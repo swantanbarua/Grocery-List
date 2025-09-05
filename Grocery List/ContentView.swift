@@ -28,7 +28,7 @@ struct ContentView: View {
                         .foregroundColor(
                             item.isCompleted ? .accentColor : .primary
                         )
-                        .strikethough(
+                        .strikethrough(
                             item.isCompleted,
                             color: .red
                         )
