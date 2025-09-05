@@ -86,9 +86,19 @@ struct ContentView: View {
         )
     )
     
-    for item in sampleData {
-        container.modelContext.insert(item)
-    }
+    container.mainContext.insert(
+        Item(
+            title: "Bakery & Bread",
+            isCompleted: false
+        )
+    )
+    
+    container.mainContext.insert(
+        Item(
+            title: "Meat & Seafood",
+            isCompleted: false
+        )
+    )
     
     return ContentView()
         .modelContainer(container)
