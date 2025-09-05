@@ -82,7 +82,7 @@ struct ContentView: View {
         container.modelContext.insert(item)
     }
     
-    return ContentView()
+    ContentView()
         .modelContainer(container)
 }
 
