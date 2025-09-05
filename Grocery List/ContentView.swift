@@ -52,33 +52,6 @@ struct ContentView: View {
 // MARK: - PREVIEW
 #Preview("Sample Data") {
     
-    let sampleData = [
-        Item(
-            title: "Bakery & Bread",
-            isCompleted: .random()
-        ),
-        
-        Item(
-            title: "Meat & Seafood",
-            isCompleted: .random()
-        ),
-        
-        Item(
-            title: "Cereals",
-            isCompleted: .random()
-        ),
-        
-        Item(
-            title: "Pasta & Rice",
-            isCompleted: .random()
-        ),
-        
-        Item(
-            title: "Cheese & Eggs",
-            isCompleted: .random()
-        )
-    ]
-    
     let container = try! ModelContainer(
         for: Item.self,
         configurations: ModelConfiguration(
@@ -96,6 +69,27 @@ struct ContentView: View {
     container.mainContext.insert(
         Item(
             title: "Meat & Seafood",
+            isCompleted: false
+        )
+    )
+    
+    container.mainContext.insert(
+        Item(
+            title: "Cereals",
+            isCompleted: true
+        )
+    )
+    
+    container.mainContext.insert(
+        Item(
+            title: "Pasta & Rice",
+            isCompleted: true
+        )
+    )
+    
+    container.mainContext.insert(
+        Item(
+            title: "Cheese & Eggs",
             isCompleted: false
         )
     )
