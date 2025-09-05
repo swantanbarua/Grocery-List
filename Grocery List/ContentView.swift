@@ -14,6 +14,44 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query var items: [Item]
     
+    // MARK: - FUNCTIONS
+    private func addEssentialFoods() {
+        modelContext.insert(
+            Item(
+                title: "Bakery & Bread",
+                isCompleted: .random()
+            )
+        )
+        
+        modelContext.insert(
+            Item(
+                title: "Meat & Seafood",
+                isCompleted: .random()
+            )
+        )
+        
+        modelContext.insert(
+            Item(
+                title: "Cereals",
+                isCompleted: .random()
+            )
+        )
+        
+        modelContext.insert(
+            Item(
+                title: "Pasta & Rice",
+                isCompleted: .random()
+            )
+        )
+        
+        modelContext.insert(
+            Item(
+                title: "Cheese & Eggs",
+                isCompleted: .random()
+            )
+        )
+    }
+    
     // MARK: - BODY
     var body: some View {
         NavigationStack {
@@ -50,55 +88,7 @@ struct ContentView: View {
 }
 
 // MARK: - PREVIEW
-#Preview("Sample Data") {
-    
-    let container = try! ModelContainer(
-        for: Item.self,
-        configurations: ModelConfiguration(
-            isStoredInMemoryOnly: true
-        )
-    )
-    
-    container.mainContext.insert(
-        Item(
-            title: "Bakery & Bread",
-            isCompleted: false
-        )
-    )
-    
-    container.mainContext.insert(
-        Item(
-            title: "Meat & Seafood",
-            isCompleted: true
-        )
-    )
-    
-    container.mainContext.insert(
-        Item(
-            title: "Cereals",
-            isCompleted: .random()
-        )
-    )
-    
-    container.mainContext.insert(
-        Item(
-            title: "Pasta & Rice",
-            isCompleted: .random()
-        )
-    )
-    
-    container.mainContext.insert(
-        Item(
-            title: "Cheese & Eggs",
-            isCompleted: .random()
-        )
-    )
-    
-    return ContentView()
-        .modelContainer(container)
-}
-
-#Preview("Empty View") {
+#Preview {
     ContentView()
         .modelContainer(
             for: Item.self,
