@@ -74,6 +74,17 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("Grocery List")
+            .toolbar {
+                if items.isEmpty {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            addEssentialFoods()
+                        } label: {
+                            Image(systemName: "carrot")
+                        }
+                    }
+                }
+            }
             .overlay {
                 if items.isEmpty {
                     ContentUnavailableView(
