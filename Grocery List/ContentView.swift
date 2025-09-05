@@ -73,11 +73,12 @@ struct ContentView: View {
         )
     )
     
-    ContentView()
-        .modelContainer(
-            for: Item.self,
-            inMemory: true
-        )
+    for item in sampleData {
+        container.modelContext.insert(item)
+    }
+    
+    return ContentView()
+        .modelContainer(container)
 }
 
 #Preview("Empty View") {
