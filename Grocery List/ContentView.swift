@@ -25,6 +25,14 @@ struct ContentView: View {
                             .vertical,
                             2
                         )
+                        .foregroundColor(
+                            item.isCompleted ? .accentColor : .primary
+                        )
+                        .strikethough(
+                            item.isCompleted,
+                            color: .red
+                        )
+                        .italic(item.isCompleted)
                 }
             }
             .navigationTitle("Grocery List")
@@ -82,7 +90,7 @@ struct ContentView: View {
         container.modelContext.insert(item)
     }
     
-    ContentView()
+    return ContentView()
         .modelContainer(container)
 }
 
