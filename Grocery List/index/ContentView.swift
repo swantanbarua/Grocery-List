@@ -16,11 +16,22 @@ struct ContentView: View {
     
     // MARK: - BODY
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            List {
+                ForEach(items) { item in
+                    Text(item.title)
+                }
+            }
+            .navigationTitle("Grocery List")
+            .overlay {
+                if items.isEmpty {
+                    ContentUnavailableView(
+                        "Empty Cart",
+                        systemImage: "cart.circle",
+                        description: Text("Add some items to the shopping list")
+                    )
+                }
+            }
         }
     }
 }
