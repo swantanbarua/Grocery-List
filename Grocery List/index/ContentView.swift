@@ -11,7 +11,7 @@ import SwiftData
 struct ContentView: View {
     
     // MARK: - PROPERTIES
-    @Environment(\.modelContext) private var modelContainer
+    @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
     
     // MARK: - BODY
@@ -33,6 +33,20 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("Grocery List")
+            .toolbar {
+                if items.isEmpty {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                           addEssentialFoods()
+                        } label: {
+                            Label(
+                                "Essentials",
+                                systemImage: "carrot"
+                            )
+                        }
+                    }
+                }
+            }
             .overlay {
                 if items.isEmpty {
                     ContentUnavailableView(
@@ -43,6 +57,16 @@ struct ContentView: View {
                 }
             }
         }
+    }
+    
+    // MARK: - FUNCTIONS
+    private func addEssentialFoods() {
+        modelContext.insert(
+            Item(
+                title: "Bakery & Bread",
+                isCompleted: false
+            )
+        )
     }
 }
 
