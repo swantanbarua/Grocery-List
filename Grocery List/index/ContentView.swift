@@ -28,6 +28,8 @@ struct ContentView: View {
                         .foregroundStyle(
                             item.isCompleted ? Color.accentColor : Color.primary
                         )
+                        .strikethrough(item.isCompleted)
+                        .italic(item.isCompleted)
                 }
             }
             .navigationTitle("Grocery List")
