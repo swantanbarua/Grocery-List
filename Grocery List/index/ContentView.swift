@@ -43,10 +43,13 @@ struct ContentView: View {
                         .swipeActions(edge: .leading) {
                             Button(
                                 "Done",
-                                systemImage: "checkmark.circle"
+                                systemImage: item.isCompleted ? "x.circle" : "checkmark.circle"
                             ) {
                                 item.isCompleted.toggle()
                             }
+                            .tint(
+                                item.isCompleted ? .accentColor : .green
+                            )
                         }
                 }
             }
