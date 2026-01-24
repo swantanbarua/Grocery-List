@@ -28,6 +28,7 @@ struct ContentView: View {
     func setupTips() {
         do {
             try Tips.resetDatastore()
+            Tips.showAllTipsForTesting()
             try Tips.configure([
                 .displayFrequency(.immediate)
             ])
