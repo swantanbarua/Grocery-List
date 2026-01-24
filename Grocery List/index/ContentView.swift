@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import TipKit
 
 struct ContentView: View {
     
@@ -16,6 +17,13 @@ struct ContentView: View {
     
     @State private var item = ""
     @FocusState private var isFocused: Bool
+    
+    let buttonTip = ButtonTip()
+    
+    // MARK: - INITIALIZATION
+    init() {
+        try? Tips.configure()
+    }
     
     // MARK: - BODY
     var body: some View {
@@ -64,6 +72,7 @@ struct ContentView: View {
                         } label: {
                             Image(systemName: "carrot")
                         }
+                        .popoverTip(buttonTip)
                     }
                 }
             }
