@@ -8,7 +8,7 @@
 import Foundation
 import TipKit
 
-struct ButtonType: Tip {
+struct ButtonTip: Tip {
     
     // MARK: - PROPERTIES
     var title = Text("Essential Foods")

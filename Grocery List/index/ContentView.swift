@@ -57,9 +57,9 @@ struct ContentView: View {
                             Button(role: .destructive) {
                                 withAnimation {
                                     modelContext.delete(item)
-                                } label: {
-                                    Image(systemName: "trash")
                                 }
+                            } label: {
+                                Image(systemName: "trash")
                             }
                         }
                         .swipeActions(edge: .leading) {
@@ -99,11 +99,11 @@ struct ContentView: View {
                     .background(.tertiary)
                     .cornerRadius(12)
                     .font(.title.weight(.light))
-                    .focused(isFocused)
+                    .focused($isFocused)
                 }
                 
                 Button {
-                    guard item.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+                    guard !item.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
                         return
                     }
                     modelContext.insert(
