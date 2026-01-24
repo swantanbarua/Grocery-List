@@ -25,6 +25,17 @@ struct ContentView: View {
         try? Tips.configure()
     }
     
+    func setupTips() {
+        do {
+            try Tips.resetDatastore()
+            try Tips.configure([
+                .displayFrequency(.immediate)
+            ])
+        } catch {
+            
+        }
+    }
+    
     // MARK: - BODY
     var body: some View {
         NavigationStack {
