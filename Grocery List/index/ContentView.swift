@@ -14,6 +14,9 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
     
+    @State private var item = ""
+    @FocusState private var isFocused: Bool
+    
     // MARK: - BODY
     var body: some View {
         NavigationStack {
@@ -32,12 +35,11 @@ struct ContentView: View {
                         .italic(item.isCompleted)
                         .swipeActions {
                             Button(role: .destructive) {
-                                modelContext.delete(item)
-                            } label: {
-                                Label(
-                                    "Delete",
-                                    systemImage: "trash"
-                                )
+                                withAnimation {
+                                    modelContext.delete(item)
+                                } label: {
+                                    Image(systemName: "trash")
+                                }
                             }
                         }
                         .swipeActions(edge: .leading) {
@@ -48,7 +50,7 @@ struct ContentView: View {
                                 item.isCompleted.toggle()
                             }
                             .tint(
-                                item.isCompleted ? .accentColor : .green
+                                item.isCompleted ? .accentColor: .green
                             )
                         }
                 }
@@ -58,16 +60,50 @@ struct ContentView: View {
                 if items.isEmpty {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button {
-                           addEssentialFoods()
+                            addEssentialFoods()
                         } label: {
-                            Label(
-                                "Essentials",
-                                systemImage: "carrot"
-                            )
+                            Image(systemName: "carrot")
                         }
                     }
                 }
             }
+            .safeAreaInset(edge: .bottom) {
+                VStack(spacing: 12) {
+                    TextField(
+                        "",
+                        text: $item
+                    )
+                    .textFieldStyle(.roundedBorder)
+                    .padding(12)
+                    .background(.tertiary)
+                    .cornerRadius(12)
+                    .font(.title.weight(.light))
+                    .focused(isFocused)
+                }
+                
+                Button {
+                    guard item.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+                        return
+                    }
+                    modelContext.insert(
+                        Item(
+                            title: item,
+                            isCompleted: false
+                        )
+                    )
+                    item = ""
+                    isFocused = false
+                } label: {
+                    Text("SAVE")
+                        .font(.title2.weight(.medium))
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                .buttonBorderShape(.roundedRectangle)
+                .controlSize(.extraLarge)
+            }
+            .padding()
+            .background(.bar)
             .overlay {
                 if items.isEmpty {
                     ContentUnavailableView(
@@ -82,12 +118,7 @@ struct ContentView: View {
     
     // MARK: - FUNCTIONS
     private func addEssentialFoods() {
-        modelContext.insert(
-            Item(
-                title: "Bakery & Bread",
-                isCompleted: false
-            )
-        )
+        
     }
 }
 
