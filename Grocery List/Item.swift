@@ -5,9 +5,11 @@
 //  Created by Swantan Barua on 27/12/25.
 //
 
+// MARK: - IMPORTS
 import Foundation
 import SwiftData
 
+// MARK: - MODEL
 @Model
 class Item {
     
