@@ -23,6 +23,7 @@ struct ContentView: View {
     // MARK: - INITIALIZATION
     init() {
         try? Tips.configure()
+        setupTips()
     }
     
     func setupTips() {
@@ -33,7 +34,7 @@ struct ContentView: View {
                 .displayFrequency(.immediate)
             ])
         } catch {
-            
+            print("Error initializing TipKit \(error.localizedDescription)")
         }
     }
     
